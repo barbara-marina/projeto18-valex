@@ -1,4 +1,4 @@
-import { connection } from "../database.js";
+import { connection } from "./../config/database.js";
 import { mapObjectToUpdateQuery } from "../utils/sqlUtils.js";
 
 export type TransactionTypes =
@@ -46,6 +46,17 @@ export async function findByTypeAndEmployeeId(
   const result = await connection.query<Card, [TransactionTypes, number]>(
     `SELECT * FROM cards WHERE type=$1 AND "employeeId"=$2`,
     [type, employeeId]
+  );
+
+  return result.rows[0];
+}
+
+export async function findByNumber(
+  number: string
+) {
+  const result = await connection.query<Card, [string]>(
+    `SELECT * FROM cards WHERE "number"=$1`,
+    [number]
   );
 
   return result.rows[0];

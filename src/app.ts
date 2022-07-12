@@ -1,10 +1,11 @@
 import express, { json } from "express";
+import "express-async-errors";
 import cors from "cors";
 import chalk from "chalk";
 import "./utils/setup.js";
 
 import router from "./routers/index.js";
-import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
+import handlerErrorMiddleware from "./middlewares/handlerErrorMiddleware.js";
 
 
 const app = express();
@@ -12,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 app.use(router);
-app.use(errorHandlerMiddleware);
+app.use(handlerErrorMiddleware);
 
 const port = process.env.PORT || 5000;
 

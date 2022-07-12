@@ -2,6 +2,6 @@ import { Router } from "express";
 
 const employeeRouter = Router();
 
-// employeeRouter.post();
+// employeeRouter
 
 export default employeeRouter;
